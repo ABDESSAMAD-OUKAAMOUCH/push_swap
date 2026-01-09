@@ -2,21 +2,18 @@
 
 void    reverse_helper(t_list **lst)
 {
-    t_list *tmp;
-    t_list *next;
-    t_list *prev;
+    t_list  *last_p;
+    t_list  *first_p;
+    last_p = *lst;
+    first_p = *lst;
+    while (last_p->next != NULL)
+        last_p =  last_p->next;
+    last_p->prev->next = NULL;
+    last_p->prev = NULL;
+    last_p->next = first_p;
+    first_p->prev =   last_p;
+    *lst =  last_p;
     
-    tmp = *lst;
-    while (tmp->next != NULL)
-        tmp = tmp->next;
-    *lst = tmp;
-    while (tmp != NULL){
-        prev = tmp->prev;
-        next = tmp->next;
-        tmp->next = prev;
-        tmp->prev = next;
-        tmp = prev;
-    }
 }
 
 void    rra(t_list **lst)
@@ -24,7 +21,7 @@ void    rra(t_list **lst)
     if (!lst || !*lst || !(*lst)->next)
         return ;
     reverse_helper(lst);
-    write(1,"rra\n",3);
+    write(1,"rra\n",4);
 }
 
 void    rrb(t_list **lst)
@@ -32,7 +29,7 @@ void    rrb(t_list **lst)
     if (!lst || !*lst || !(*lst)->next)
         return ;
     reverse_helper(lst);
-    write(1,"rrb\n",3);
+    write(1,"rrb\n",4);
 }
 
 void    rrr(t_list **stk_a, t_list **stk_b)
@@ -41,5 +38,5 @@ void    rrr(t_list **stk_a, t_list **stk_b)
         return ;
     reverse_helper(stk_a);
     reverse_helper(stk_b);
-    write(1,"rrr\n",3);
+    write(1,"rrr\n",4);
 }

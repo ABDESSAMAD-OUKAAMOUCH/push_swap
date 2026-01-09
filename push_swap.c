@@ -63,6 +63,13 @@ int main(int argc, char **argv)
         i++;
     }
     input_storage(&stk_a, argv);
+    t_list *tmp = stk_a;
+    while (tmp)
+    {
+        printf("%d\n",tmp->number);
+        tmp = tmp->next;
+    }
+    reverse_helper(&stk_a);
     while (stk_a)
     {
         printf("%d\n",stk_a->number);

@@ -1,4 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoukaamo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/19 12:31:48 by aoukaamo          #+#    #+#             */
+/*   Updated: 2026/01/19 13:40:49 by aoukaamo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
+
+void	print_error(void)
+{
+	write(2, "Error\n", 6);
+	exit(1);
+}
 
 static int	remove_space(const char *nptr)
 {
@@ -10,16 +28,50 @@ static int	remove_space(const char *nptr)
 	return (i);
 }
 
-void    print_error()
+int	check_int_scope(char *str, int i, int sign)
 {
-    write(2, "Error\n",6);
-    exit(1);
+	unsigned long	res;
+
+	res = 0;
+	while (str[i])
+	{
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (0);
+		res = res * 10 + (str[i] - '0');
+		if (sign == 1 && res > INT_MAX)
+			return (0);
+		if (sign == -1 && res > (unsigned long)INT_MAX + 1)
+			return (0);
+		i++;
+	}
+	return (1);
 }
-int convert_string(char *str)
+
+int	check_overflow(char *str)
 {
-	int					i;
-	unsigned long   res;
-	int					sign;
+	int				i;
+	int				sign;
+
+	if (str == NULL)
+		return (0);
+	i = remove_space(str);
+	sign = 1;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -sign;
+		i++;
+	}
+	if (!str[i])
+		return (0);
+	return (check_int_scope(str, i, sign));
+}
+
+int	convert_string(char *str)
+{
+	int				i;
+	unsigned long	res;
+	int				sign;
 
 	if (str == NULL)
 		return (0);
@@ -35,43 +87,7 @@ int convert_string(char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		res = res * 10 + (str[i] - '0');
-		if (sign == 1 && res > INT_MAX)
-			print_error();
-		if (sign == -1 && res > (unsigned long)INT_MAX + 1)
-			print_error();
 		i++;
 	}
 	return ((int)(res * sign));
-}
-
-int is_number(char *str)
-{
-    int i = 0;
-    if ((str[i] == '+' || str[i] == '-') && str[i + 1] != '\0')
-        i++;
-    while (str[i])
-    {
-        if (!(str[i] >= '0' && str[i] <= '9'))
-            return (0);
-        i++;
-    }
-    return (1);
-}
-
-int is_unique_scope(char **argv)
-{
-    int i = 1;
-    while (argv[i])
-    {
-        
-        int j = i + 1;
-        while (argv[j] != NULL)
-        {
-            if (convert_string(argv[i]) == convert_string(argv[j]))
-                return (0);
-            j++;
-        }
-        i++;
-    }
-    return (1);
 }

@@ -28,23 +28,25 @@ void	reverse_helper(t_list **lst)
 	*lst = last_p;
 }
 
-void	rra(t_list **lst)
+void	rra(t_list **lst, int is_pr)
 {
 	if (!lst || !*lst || !(*lst)->next)
 		return ;
 	reverse_helper(lst);
-	write(1, "rra\n", 4);
+	if (is_pr)
+		write(1, "rra\n", 4);
 }
 
-void	rrb(t_list **lst)
+void	rrb(t_list **lst, int is_pr)
 {
 	if (!lst || !*lst || !(*lst)->next)
 		return ;
 	reverse_helper(lst);
-	write(1, "rrb\n", 4);
+	if (is_pr)
+		write(1, "rrb\n", 4);
 }
 
-void	rrr(t_list **stk_a, t_list **stk_b)
+void	rrr(t_list **stk_a, t_list **stk_b, int is_pr)
 {
 	int	reverse;
 
@@ -59,6 +61,6 @@ void	rrr(t_list **stk_a, t_list **stk_b)
 		reverse_helper(stk_b);
 		reverse = 1;
 	}
-	if (reverse)
+	if (reverse && is_pr)
 		write(1, "rrr\n", 4);
 }

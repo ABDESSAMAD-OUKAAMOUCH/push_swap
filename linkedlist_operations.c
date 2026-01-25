@@ -6,7 +6,7 @@
 /*   By: aoukaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 15:14:40 by aoukaamo          #+#    #+#             */
-/*   Updated: 2026/01/19 15:16:06 by aoukaamo         ###   ########.fr       */
+/*   Updated: 2026/01/20 12:23:25 by aoukaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,19 @@ t_list	*ft_lstnew(int nbr)
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);
+}
+
+int	ft_list_size(t_list *begin_list)
+{
+	int		size;
+	t_list	*tmp;
+
+	size = 0;
+	tmp = begin_list;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		size++;
+	}
+	return (size);
 }

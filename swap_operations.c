@@ -28,23 +28,25 @@ void	swap_helper(t_list **lst)
 	*lst = parameter2;
 }
 
-void	sa(t_list **lst)
+void	sa(t_list **lst, int is_pr)
 {
 	if (!lst || !*lst || !(*lst)->next)
 		return ;
 	swap_helper(lst);
-	write(1, "sa\n", 3);
+	if (is_pr)
+		write(1, "sa\n", 3);
 }
 
-void	sb(t_list **lst)
+void	sb(t_list **lst, int is_pr)
 {
 	if (!lst || !*lst || !(*lst)->next)
 		return ;
 	swap_helper(lst);
-	write(1, "sb\n", 3);
+	if (is_pr)
+		write(1, "sb\n", 3);
 }
 
-void	ss(t_list **stk_a, t_list **stk_b)
+void	ss(t_list **stk_a, t_list **stk_b, int is_pr)
 {
 	int	swap;
 
@@ -59,6 +61,6 @@ void	ss(t_list **stk_a, t_list **stk_b)
 		swap_helper(stk_b);
 		swap = 1;
 	}
-	if (swap)
+	if (swap && is_pr)
 		write(1, "ss\n", 3);
 }

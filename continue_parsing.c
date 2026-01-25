@@ -45,7 +45,6 @@ int	check_is_duplicate(int argc, int i, char **argv, char **arg)
 	int		h;
 	char	**str;
 	int		j;
-	int		k;
 
 	h = i + 1;
 	while (h < argc)
@@ -71,7 +70,6 @@ int	check_is_duplicate(int argc, int i, char **argv, char **arg)
 int	is_unique(char **argv, int argc)
 {
 	int		j;
-	int		k;
 	int		i;
 	char	**arg;
 

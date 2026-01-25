@@ -28,23 +28,25 @@ void	rotate_helper(t_list **lst)
 	p1->next = NULL;
 }
 
-void	ra(t_list **lst)
+void	ra(t_list **lst, int is_pr)
 {
 	if (!lst || !*lst || !(*lst)->next)
 		return ;
 	rotate_helper(lst);
-	write(1, "ra\n", 3);
+	if (is_pr)
+		write(1, "ra\n", 3);
 }
 
-void	rb(t_list **lst)
+void	rb(t_list **lst, int is_pr)
 {
 	if (!lst || !*lst || !(*lst)->next)
 		return ;
 	rotate_helper(lst);
-	write(1, "rb\n", 3);
+	if (is_pr)
+		write(1, "rb\n", 3);
 }
 
-void	rr(t_list **stk_a, t_list **stk_b)
+void	rr(t_list **stk_a, t_list **stk_b, int is_pr)
 {
 	int	rotate;
 
@@ -59,6 +61,6 @@ void	rr(t_list **stk_a, t_list **stk_b)
 		rotate_helper(stk_b);
 		rotate = 1;
 	}
-	if (rotate)
+	if (rotate && is_pr)
 		write(1, "rr\n", 3);
 }

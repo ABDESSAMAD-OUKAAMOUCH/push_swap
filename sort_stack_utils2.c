@@ -6,27 +6,43 @@
 /*   By: aoukaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 12:28:52 by aoukaamo          #+#    #+#             */
-/*   Updated: 2026/01/24 12:28:56 by aoukaamo         ###   ########.fr       */
+/*   Updated: 2026/01/26 10:39:42 by aoukaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_chunk(t_list **stk_a, t_list **stk_b, int midd, int *pushed, int min_index, int max_index)
+int	push_chunk(t_list **stk_a, t_list **stk_b, int midd, int *pushed)
 {
 	int	tmp;
+	int	check;
 
+	check = 0;
 	tmp = (*stk_a)->index;
 	pb(stk_a, stk_b, 1);
 	if (tmp < midd)
 	{
-		if(*stk_a && !((*stk_a)->index >= min_index && (*stk_a)->index <= max_index))
-			rr(stk_a, stk_b, 1);
-		else
-			rb(stk_b, 1);
-			
+		check = 1;
 	}
 	(*pushed)++;
+	return (check);
+}
+
+void	choose_op(t_list **stk_a, t_list **stk_b, int min, int max)
+{
+	if (*stk_a && !((*stk_a)->index >= min && (*stk_a)->index <= max))
+		rr(stk_a, stk_b, 1);
+	else
+		rb(stk_b, 1);
+}
+
+void	change_chunk(int *pushed, int *current_chunk, int chunksize)
+{
+	if (*pushed == chunksize)
+	{
+		(*current_chunk)++;
+		*pushed = 0;
+	}
 }
 
 void	puch_to_b(t_list **stk_a, t_list **stk_b, int chunksize)
@@ -44,15 +60,11 @@ void	puch_to_b(t_list **stk_a, t_list **stk_b, int chunksize)
 		min_index = current_chunk * chunksize;
 		max_index = min_index + chunksize - 1;
 		middle_index = (max_index + min_index) / 2;
-
 		if ((*stk_a)->index >= min_index && (*stk_a)->index <= max_index)
 		{
-			push_chunk(stk_a, stk_b, middle_index, &pushed, min_index, max_index);
-			if (pushed == chunksize)
-			{
-				current_chunk++;
-				pushed = 0;
-			}
+			if (push_chunk(stk_a, stk_b, middle_index, &pushed))
+				choose_op(stk_a, stk_b, min_index, max_index);
+			change_chunk(&pushed, &current_chunk, chunksize);
 		}
 		else
 			ra(stk_a, 1);

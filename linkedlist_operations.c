@@ -40,6 +40,7 @@ t_list	*ft_lstnew(int nbr)
 	node->number = nbr;
 	node->next = NULL;
 	node->prev = NULL;
+	node->index = 0;
 	return (node);
 }
 

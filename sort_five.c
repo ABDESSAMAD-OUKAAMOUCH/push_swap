@@ -6,7 +6,7 @@
 /*   By: aoukaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 13:50:57 by aoukaamo          #+#    #+#             */
-/*   Updated: 2026/01/20 14:25:46 by aoukaamo         ###   ########.fr       */
+/*   Updated: 2026/01/26 10:06:27 by aoukaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ void	insert_index(t_list **stk_a, int index)
 		{
 			ra(stk_a, 1);
 		}
-	}else{
+	}
+	else
+	{
 		while ((*stk_a)->index != index)
 		{
 			rra(stk_a, 1);

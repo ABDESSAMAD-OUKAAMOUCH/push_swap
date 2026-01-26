@@ -12,23 +12,6 @@
 
 #include "push_swap.h"
 
-
-// void	push_max_index(t_list **stk_a, t_list **stk_b, int index, int pos)
-// {
-// 	int	counter;
-
-// 	counter = ft_list_size(*stk_b);
-// 	while ((*stk_b)->index != index)
-// 	{
-// 		pos = pos_index(*stk_b, index);
-// 		if (pos <= counter / 2)
-// 			rb(stk_b, 1);
-// 		else
-// 			rrb(stk_b, 1);
-// 	}
-// 	pa(stk_a, stk_b, 1);
-// }
-
 int	max_index(t_list *stk_a)
 {
 	t_list	*max;
@@ -47,7 +30,6 @@ int	max_index(t_list *stk_a)
 	return (max->index);
 }
 
-
 void	push_max_index(t_list **stk_a, t_list **stk_b, int index, int pos)
 {
 	int	size;
@@ -59,7 +41,9 @@ void	push_max_index(t_list **stk_a, t_list **stk_b, int index, int pos)
 		{
 			rb(stk_b, 1);
 		}
-	}else{
+	}
+	else
+	{
 		while ((*stk_b)->index != index)
 		{
 			rrb(stk_b, 1);

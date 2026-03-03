@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 void	reverse_helper(t_list **lst)
 {
@@ -33,7 +33,6 @@ void	rra(t_list **lst)
 	if (!lst || !*lst || !(*lst)->next)
 		return ;
 	reverse_helper(lst);
-	write(1, "rra\n", 4);
 }
 
 void	rrb(t_list **lst)
@@ -41,24 +40,16 @@ void	rrb(t_list **lst)
 	if (!lst || !*lst || !(*lst)->next)
 		return ;
 	reverse_helper(lst);
-	write(1, "rrb\n", 4);
 }
 
 void	rrr(t_list **stk_a, t_list **stk_b)
 {
-	int	reverse;
-
-	reverse = 0;
 	if (stk_a && *stk_a && (*stk_a)->next)
 	{
 		reverse_helper(stk_a);
-		reverse = 1;
 	}
 	if (stk_b && *stk_b && (*stk_b)->next)
 	{
 		reverse_helper(stk_b);
-		reverse = 1;
 	}
-	if (reverse)
-		write(1, "rrr\n", 4);
 }

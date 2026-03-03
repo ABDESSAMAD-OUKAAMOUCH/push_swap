@@ -39,17 +39,17 @@ void	push_max_index(t_list **stk_a, t_list **stk_b, int index, int pos)
 	{
 		while ((*stk_b)->index != index)
 		{
-			rb(stk_b, 1);
+			rb(stk_b);
 		}
 	}
 	else
 	{
 		while ((*stk_b)->index != index)
 		{
-			rrb(stk_b, 1);
+			rrb(stk_b);
 		}
 	}
-	pa(stk_a, stk_b, 1);
+	pa(stk_a, stk_b);
 }
 
 int	calc_cost(t_list *stk_b, int pos)
@@ -64,7 +64,7 @@ int	calc_cost(t_list *stk_b, int pos)
 	return (cost);
 }
 
-void	push_to_a(t_list **stk_a, t_list **stk_b)
+void	push_to_stk_a(t_list **stk_a, t_list **stk_b)
 {
 	int	max;
 	int	pos_max;
@@ -84,7 +84,7 @@ void	push_to_a(t_list **stk_a, t_list **stk_b)
 			push_max_index(stk_a, stk_b, max - 1, pos_next);
 			pos_max = pos_index(*stk_b, max);
 			push_max_index(stk_a, stk_b, max, pos_max);
-			sa(stk_a, 1);
+			sa(stk_a);
 		}
 		else
 			push_max_index(stk_a, stk_b, max, pos_max);

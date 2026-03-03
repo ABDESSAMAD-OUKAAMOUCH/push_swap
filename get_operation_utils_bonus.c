@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -34,11 +34,11 @@ char	*ft_strchr(char *s, int c)
 	while (s[i])
 	{
 		if (s[i] == (char)c)
-			return ((char *)&s[i]);
+			return (&s[i]);
 		i++;
 	}
 	if ((char)c == '\0')
-		return ((char *)&s[i]);
+		return (&s[i]);
 	return (NULL);
 }
 

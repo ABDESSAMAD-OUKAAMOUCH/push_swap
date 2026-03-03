@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 int	ft_strcmp(char *s1, char *s2)
 {
@@ -37,27 +37,27 @@ void	free_data(char *line, t_list **stk_a, t_list **stk_b)
 void	check_op(t_list **stk_a, t_list **stk_b, char *line)
 {
 	if (!ft_strcmp(line, "pa\n"))
-		pa(stk_a, stk_b, 0);
+		pa(stk_a, stk_b);
 	else if (!ft_strcmp(line, "pb\n"))
-		pb(stk_a, stk_b, 0);
+		pb(stk_a, stk_b);
 	else if (!ft_strcmp(line, "ra\n"))
-		ra(stk_a, 0);
+		ra(stk_a);
 	else if (!ft_strcmp(line, "rb\n"))
-		rb(stk_b, 0);
+		rb(stk_b);
 	else if (!ft_strcmp(line, "rr\n"))
-		rr(stk_a, stk_b, 0);
+		rr(stk_a, stk_b);
 	else if (!ft_strcmp(line, "rra\n"))
-		rra(stk_a, 0);
+		rra(stk_a);
 	else if (!ft_strcmp(line, "rrb\n"))
-		rrb(stk_b, 0);
+		rrb(stk_b);
 	else if (!ft_strcmp(line, "rrr\n"))
-		rrr(stk_a, stk_b, 0);
+		rrr(stk_a, stk_b);
 	else if (!ft_strcmp(line, "sa\n"))
-		sa(stk_a, 0);
+		sa(stk_a);
 	else if (!ft_strcmp(line, "sb\n"))
-		sb(stk_b, 0);
+		sb(stk_b);
 	else if (!ft_strcmp(line, "ss\n"))
-		ss(stk_a, stk_b, 0);
+		ss(stk_a, stk_b);
 	else
 		free_data(line, stk_a, stk_b);
 }

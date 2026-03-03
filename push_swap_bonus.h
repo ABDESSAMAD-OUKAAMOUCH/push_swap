@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef PUSH_SWAP_BONUS_H
+# define PUSH_SWAP_BONUS_H
 # include <unistd.h>
 # include <limits.h>
 # include <stdlib.h>
@@ -19,7 +19,6 @@
 typedef struct s_list
 {
 	int				number;
-	int				index;
 	struct s_list	*next;
 	struct s_list	*prev;
 }	t_list;
@@ -35,10 +34,15 @@ void	rr(t_list **stk_a, t_list **stk_b);
 void	rra(t_list **lst);
 void	rrb(t_list **lst);
 void	rrr(t_list **stk_a, t_list **stk_b);
+char	*get_next_line(int fd);
+char	*ft_strchr(char *s, int c);
+size_t	ft_strlen(const char *s);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strdup(const char *s);
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 int		is_unique(char **argv, int argc);
 int		convert_string(char *str);
 int		is_overflow(char *str);
-int		pos_index(t_list *stk_a, int index);
 void	print_error(void);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstnew(int nbr);
@@ -49,11 +53,6 @@ void	free_stack(t_list **stk);
 int		check_is_sort(t_list *stk_a);
 void	input_storage(t_list **stk_a, char **argv);
 void	is_valid_arg(char **argv);
-void	sort_two_items(t_list **stk_a);
-void	sort_three_items(t_list **stk_a);
-void	sort_five_items(t_list **stk_a, t_list **stk_b);
-void	push_to_stk_a(t_list **stk_a, t_list **stk_b);
-void	push_to_stk_b(t_list **stk_a, t_list **stk_b, int chunksize);
-void	sort_stack(t_list **stk_a, t_list **stk_b);
+void	check_op(t_list **stk_a, t_list **stk_b, char *line);
 
 #endif

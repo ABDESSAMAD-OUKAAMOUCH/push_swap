@@ -12,14 +12,14 @@
 
 #include "push_swap.h"
 
-int	push_chunk(t_list **stk_a, t_list **stk_b, int midd, int *pushed)
+int	push_index(t_list **stk_a, t_list **stk_b, int midd, int *pushed)
 {
 	int	tmp;
 	int	check;
 
 	check = 0;
 	tmp = (*stk_a)->index;
-	pb(stk_a, stk_b, 1);
+	pb(stk_a, stk_b);
 	if (tmp < midd)
 	{
 		check = 1;
@@ -31,68 +31,68 @@ int	push_chunk(t_list **stk_a, t_list **stk_b, int midd, int *pushed)
 void	choose_op(t_list **stk_a, t_list **stk_b, int min, int max)
 {
 	if (*stk_a && !((*stk_a)->index >= min && (*stk_a)->index <= max))
-		rr(stk_a, stk_b, 1);
+		rr(stk_a, stk_b);
 	else
-		rb(stk_b, 1);
+		rb(stk_b);
 }
 
-void	change_chunk(int *pushed, int *current_chunk, int chunksize)
+void	change_chunk(int *pushed, int *current_chu, int chunksize)
 {
 	if (*pushed == chunksize)
 	{
-		(*current_chunk)++;
+		(*current_chu)++;
 		*pushed = 0;
 	}
 }
 
-void	puch_to_b(t_list **stk_a, t_list **stk_b, int chunksize)
+void	push_to_stk_b(t_list **stk_a, t_list **stk_b, int chunksize)
 {
 	int	pushed;
-	int	current_chunk;
-	int	min_index;
-	int	max_index;
-	int	middle_index;
+	int	current_chu;
+	int	min_ind;
+	int	max_ind;
+	int	middle_ind;
 
 	pushed = 0;
-	current_chunk = 0;
+	current_chu = 0;
 	while (*stk_a)
 	{
-		min_index = current_chunk * chunksize;
-		max_index = min_index + chunksize - 1;
-		middle_index = (max_index + min_index) / 2;
-		if ((*stk_a)->index >= min_index && (*stk_a)->index <= max_index)
+		min_ind = current_chu * chunksize;
+		max_ind = min_ind + chunksize - 1;
+		middle_ind = (max_ind + min_ind) / 2;
+		if ((*stk_a)->index >= min_ind && (*stk_a)->index <= max_ind)
 		{
-			if (push_chunk(stk_a, stk_b, middle_index, &pushed))
-				choose_op(stk_a, stk_b, min_index, max_index);
-			change_chunk(&pushed, &current_chunk, chunksize);
+			if (push_index(stk_a, stk_b, middle_ind, &pushed))
+				choose_op(stk_a, stk_b, min_ind, max_ind);
+			change_chunk(&pushed, &current_chu, chunksize);
 		}
 		else
-			ra(stk_a, 1);
+			ra(stk_a);
 	}
 }
 
 void	sort_stack(t_list **stk_a, t_list **stk_b)
 {
 	int	chunksize;
-	int	counter;
+	int	size;
 
-	counter = ft_list_size(*stk_a);
-	if (counter <= 5)
+	size = ft_list_size(*stk_a);
+	if (size <= 5)
 	{
-		if (counter == 2)
+		if (size == 2)
 			sort_two_items(stk_a);
-		else if (counter == 3)
+		else if (size == 3)
 			sort_three_items(stk_a);
 		else
-			sort_for_five_items(stk_a, stk_b);
+			sort_five_items(stk_a, stk_b);
 	}
 	else
 	{
-		if (counter <= 100)
+		if (size <= 100)
 			chunksize = 20;
 		else
-			chunksize = 63;
-		puch_to_b(stk_a, stk_b, chunksize);
-		push_to_a(stk_a, stk_b);
+			chunksize = 60;
+		push_to_stk_b(stk_a, stk_b, chunksize);
+		push_to_stk_a(stk_a, stk_b);
 	}
 }

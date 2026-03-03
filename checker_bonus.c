@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 void	get_op(t_list **stk_a, t_list **stk_b)
 {
@@ -45,5 +45,6 @@ int	main(int argc, char **argv)
 	else
 		write(1, "KO\n", 3);
 	free_stack(&stk_a);
+	free_stack(&stk_b);
 	return (0);
 }

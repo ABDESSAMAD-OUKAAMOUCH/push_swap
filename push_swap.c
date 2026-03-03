@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "push_swap.h"
 
 void	give_index_to_node(int *arr, int size, t_list *stk_a)
@@ -104,5 +103,6 @@ int	main(int argc, char **argv)
 	create_sort_arr(&stk_a);
 	sort_stack(&stk_a, &stk_b);
 	free_stack(&stk_a);
+	free_stack(&stk_b);
 	return (0);
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 void	pa(t_list **stk_a, t_list **stk_b)
 {
@@ -27,7 +27,6 @@ void	pa(t_list **stk_a, t_list **stk_b)
 	(*stk_a)->prev = NULL;
 	if (tmp)
 		tmp->prev = *stk_a;
-	write(1, "pa\n", 3);
 }
 
 void	pb(t_list **stk_a, t_list **stk_b)
@@ -45,5 +44,4 @@ void	pb(t_list **stk_a, t_list **stk_b)
 	(*stk_b)->prev = NULL;
 	if (tmp)
 		tmp->prev = *stk_b;
-	write(1, "pb\n", 3);
 }
